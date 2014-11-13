@@ -1,6 +1,6 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Support for LaTex-to-Unicode conversion as in the Julia REPL "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""
+" Support for LaTex-to-Unicode conversion "
+"""""""""""""""""""""""""""""""""""""""""""
 
 function! s:L2U_Setup()
 
@@ -50,7 +50,7 @@ function! s:L2U_SetupGlobal()
 
   let g:l2u_did_global_setup = 1
 
-  let g:l2u_symbols_dict = julia_latex_symbols#get_dict()
+  let g:l2u_symbols_dict = latex_symbols#get_dict()
 
   call s:L2U_deprecated_options()
 
@@ -79,10 +79,6 @@ endfunction
 function! LaTeXtoUnicode#Refresh()
 
   call s:L2U_Setup()
-
-  " by default, LaTeX-to-Unicode is only active on julia files
-  let file_types = s:L2U_file_type_regex(get(g:, "latex_to_unicode_file_types", "julia"))
-  let file_types_blacklist = s:L2U_file_type_regex(get(g:, "latex_to_unicode_file_types_blacklist", "$^"))
 
   if match(&filetype, file_types) < 0 || match(&filetype, file_types_blacklist) >= 0
     if b:l2u_enabled
@@ -132,18 +128,6 @@ function! LaTeXtoUnicode#Disable()
   let b:l2u_enabled = 0
   call LaTeXtoUnicode#Init()
   return ""
-endfunction
-
-" Translate old options to their new equivalents
-function! s:L2U_deprecated_options()
-  for [new, old] in [["latex_to_unicode_tab",         "julia_latex_to_unicode"],
-                 \   ["latex_to_unicode_auto",        "julia_auto_latex_to_unicode"],
-                 \   ["latex_to_unicode_suggestions", "julia_latex_suggestions_enabled"],
-                 \   ["latex_to_unicode_eager",       "julia_latex_to_unicode_eager"]]
-    if !has_key(g:, new) && has_key(g:, old)
-      exec "let g:" . new . " = g:" . old
-    endif
-  endfor
 endfunction
 
 function! s:L2U_file_type_regex(ft)
