@@ -8,6 +8,7 @@ mkdir -p bundle && cd bundle
 git clone git://github.com/loskutov/vim-input-latex.git
 ```
 
+[pathogen]: https://github.com/tpope/vim-pathogen
 
 ### Manually
 
