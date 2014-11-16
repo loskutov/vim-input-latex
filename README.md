@@ -5,38 +5,20 @@
 ``` bash
 cd ~/.vim
 mkdir -p bundle && cd bundle
-git clone git://github.com/JuliaLang/julia-vim.git
+git clone git://github.com/loskutov/vim-input-latex.git
 ```
 
-### Using [vundle]
-
-Add a new plugin line to your `.vimrc`:
-
-``` vim
-Plugin 'JuliaLang/julia-vim'
-```
-
-Run `vim` and update your bundles:
-
-``` vim
-:PluginInstall!
-```
-
-[pathogen]: https://github.com/tpope/vim-pathogen
-[vundle]: https://github.com/gmarik/vundle
 
 ### Manually
 
 Copy (or symlink) the contents of this repository into the vim application support directory:
 
 ``` bash
-git clone git://github.com/JuliaLang/julia-vim.git
-cd julia-vim
+git clone git://github.com/loskutov/vim-input-latex.git
+cd vim-input-latex
 mkdir -p ~/.vim
 cp -R * ~/.vim
 ```
-
-Julia should appear as a file type and be automatically detected for files with the `.jl` extension.
 
 ## LaTeX-to-Unicode substitutions
 
@@ -55,7 +37,7 @@ These features only work as described with Vim version 7.4 or higher. Tab comple
 available on lower Vim versions, see below for more details.
 
 The following sections provide details on these features. The complete documentation is provided by calling
-`:help julia-vim` from within Vim.
+`:help vim-input-latex` from within Vim.
 
 ### LaTeX-to-Unicode via Tab key
 
@@ -98,19 +80,6 @@ substitution to Unicode.
 [YouCompleteMe]: https://github.com/Valloric/YouCompleteMe
 [neocomplcache]: https://github.com/Shougo/neocomplcache.vim
 
-#### Using this feature on Vim versions lower than 7.4
-
-The automatic remapping of the `<Tab>` key is not performed if Vim version is lower than 7.4. However, the
-functionality can still be used via the omnicompletion mechanism, i.e. by using `CTRL-X + CTRL-O`. You can
-map this to some more convenient key combination, e.g. you may want to add something like this line to your
-`.vimrc` file:
-
-```
-inoremap <C-Tab> <C-X><C-O>
-```
-
-This would map the functionality to `CTRL-Tab`. However, if you try to map this to `<Tab>`, you'd only be
-able to use literal `<Tab>` by using `CTRL-V + <Tab>`.
 
 ### LaTeX-to-Unicode as you type
 
@@ -130,15 +99,6 @@ The `g:latex_to_unicode_auto` setting can also be changed from the Vim command-l
 also need to give the command `:call LaTeXtoUnicode#Init()` for the change to take effect.
 
 This feature is not available with Vim versions lower then 7.4.
-
-### LaTeX-to-Unicode on other file types
-
-By default, the LaTeX-to-Unicode substitutions are only active when editing Julia files. However, you can use
-the variable `g:latex_to_unicode_file_types` to specify for which file types this feature is active by default.
-The variable must be set to a string containing a pattern (a regular expression) which matches the desired file
-types, or to a list of such patterns. For example, to activate the feature on all file types, you could put
-`let g:latex_to_unicode_file_types = ".*"` in your `.vimrc` file.
-Be aware, however, that enabling the functionality overrides the `omnifunc` setting for that file type.
 
 ### Enabling and disabling the LaTeX-to-Unicode functionality
 
