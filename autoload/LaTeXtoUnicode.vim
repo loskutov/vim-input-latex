@@ -52,7 +52,7 @@ function! s:L2U_SetupGlobal()
 
   let g:l2u_symbols_dict = latex_symbols#get_dict()
 
-  call s:L2U_deprecated_options()
+  " call s:L2U_deprecated_options()
 
   if v:version < 704
       let g:latex_to_unicode_tab = 0
@@ -80,13 +80,7 @@ function! LaTeXtoUnicode#Refresh()
 
   call s:L2U_Setup()
 
-  if match(&filetype, file_types) < 0 || match(&filetype, file_types_blacklist) >= 0
-    if b:l2u_enabled
-      call LaTeXtoUnicode#Disable()
-    else
-      return
-    endif
-  elseif !b:l2u_enabled
+  if !b:l2u_enabled
     call LaTeXtoUnicode#Enable()
   endif
 
