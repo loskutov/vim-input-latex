@@ -1,6 +1,7 @@
-The julia-vim plug-in is licensed under the MIT License:
+The vim-input-latex plug-in is licensed under the MIT License:
 
 > Copyright (c) 2014: Ignat Loskutov;
+>
 > Copyright (c) 2012-2014: Carlo Baldassi and other contributors:
 >
 > https://github.com/JuliaLang/julia-vim/contributors
